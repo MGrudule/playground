@@ -1,0 +1,30 @@
+@import "scss/tailwind";
+@import "scss/imports";
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Merriweather+Sans:ital,wght@0,400;0,800;1,700;1,800&display=swap');
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    @apply bg-gray-100 text-black-900 font-body;
+}
+
+h1,
+h2,
+h3 {
+    @apply font-display;
+}
+
+h1 {
+    @apply text-4xl font-extrabold;
+}
+
+a {
+    @apply text-teal-700;
+}
+
+a:hover {
+    border-bottom: 0.2rem dashed;
+    @apply text-teal-600 border-pink-500;
+
+}

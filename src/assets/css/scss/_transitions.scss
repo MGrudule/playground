@@ -1,0 +1,81 @@
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to
+
+/* .fade-leave-active below version 2.1.8 */
+    {
+    opacity: 0;
+}
+
+
+
+/******************************
+********** SPLASH ************
+****************************/
+
+.splash-enter-to .page-wrapper {
+    opacity: 0;
+}
+
+.splash-leave-to .page-wrapper {
+    opacity: 0;
+}
+
+.splash-leave-active .page-wrapper {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.splash-leave-active,
+.splash-enter-active {
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+.splash-leave-active {
+    transition: background-color 0.2s, border-width 0.7s;
+    border: 5rem dashed;
+    @apply border-pink-500 bg-blue-500 w-screen h-screen absolute top-0;
+
+    .page-wrapper {
+        opacity: 0;
+    }
+}
+
+.splash-enter-active {
+    transition: background-color 0.2s, border-width 0.7s;
+    border: 0rem dashed;
+    @apply border-blue-500 w-screen h-screen;
+
+    .page-wrapper {
+        opacity: 0;
+    }
+}
+
+.splash-leave-active .page-wrapper,
+.splash-enter-active .page-wrapper {
+    transition: opacity 0.2s;
+}
+
+.splash-enter,
+.splash-leave-to {
+    border: 51vh dashed;
+    @apply border-yellow-500 bg-blue-600 w-screen h-screen;
+}
+
+.splash-enter-to,
+.splash-leave {
+    border: 0rem dashed;
+    @apply border-pink-500 bg-yellow-500 w-screen h-screen;
+}
+
+.splash-leave .page-wrapper {
+    opacity: 0;
+}
