@@ -1,15 +1,10 @@
 <template>
   <div
+    ref="card"
     class="card hover:bg-teal-700 text-black lg:w-48 m-4 lg:m-2"
     :class="card.color"
     :style="cardStyle"
-  >
-    {{ card.name }} {{message}}
-    <!-- <button
-      @click="onClick"
-      class="btn bg-yellow-500 text-blue-500 p-2 uppercase text-yellow-500"
-    >ADD</button>-->
-  </div>
+  >{{ card.name }} {{message}}</div>
 </template>
 
 <script>
@@ -60,9 +55,21 @@ export default {
       return 0;
     }
   },
+  watch: {
+    cardStyle() {
+      this.sendCoordinates();
+    }
+  },
   methods: {
-    onClick() {
-      this.message = "✔️";
+    sendCoordinates() {
+      let pos = {
+        x: this.$refs.card.getBoundingClientRect().top,
+        y: this.$refs.card.getBoundingClientRect().left
+      };
+      this.$emit("setCoordinates", pos);
+    },
+    getPosX() {
+      return this.$refs.card.getBoundingClientRect().left;
     },
     getX(order, r, clockwise, offset) {
       if (this.even && this.meta) {
@@ -92,6 +99,9 @@ export default {
           Math.cos((360 / this.nrOfCircles / 180) * (order + offset) * Math.PI)
       );
     }
+  },
+  mounted() {
+    this.sendCoordinates();
   }
 };
 </script>

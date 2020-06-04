@@ -19,6 +19,7 @@
           :grid="grid"
           :meta="meta"
           :key="circle.id"
+          @setCoordinates="setCoordinates($event, circle.id)"
         ></card>
       </transition-group>
     </div>
@@ -41,6 +42,7 @@ export default {
       boxHeight: 0,
       radius: 0,
       edges: [],
+      vertices: {},
       circles: [
         { id: 1, name: "Worldview", keywords: "lorem", color: "bg-white" },
         { id: 2, name: "Wellbeing", keywords: "lorem", color: "bg-yellow-500" },
@@ -76,6 +78,10 @@ export default {
     }
   },
   methods: {
+    setCoordinates(points, id) {
+      console.log(points);
+      this.vertices[id] = points;
+    },
     getEdges() {
       let edgeList = [];
       let n = this.nodeList.length;
