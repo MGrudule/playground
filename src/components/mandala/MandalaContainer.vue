@@ -2,7 +2,34 @@
   <div>
     <button class="btn my-5 text-teal-700 w-100" @click="toggleGrid">toggle grid</button>
     <button class="btn my-5 text-teal-700 w-100" @click="toggleMeta">toggle meta</button>
+    {{adding}}
     <div ref="boxouter" class="box-wrapper">
+      <svg v-if="adding" class="absolute top-0 left-0" :height="boxHeight" :width="boxHeight">
+        <line
+          :x1="getX(activePoit)"
+          :y1="getY(activePoit)"
+          :x2="getX(hoverPoint)"
+          :y2="getY(hoverPoint)"
+          style="stroke:rgba(255,0,0,0.5);stroke-width:4"
+        />
+      </svg>
+      <transition-group
+        tag="svg"
+        v-if="grid"
+        class="absolute top-0 left-0"
+        :height="boxHeight"
+        :width="boxHeight"
+      >
+        <line
+          v-for="(edge, index) in pattern"
+          :key="`pattern${index}`"
+          :x1="getX(edge[0])"
+          :y1="getY(edge[0])"
+          :x2="getX(edge[1])"
+          :y2="getY(edge[1])"
+          style="stroke:rgba(0,255,120,0.5);stroke-width:3"
+        />
+      </transition-group>
       <transition-group
         tag="svg"
         v-if="grid"
@@ -38,6 +65,8 @@
           :meta="meta"
           :key="circle.id"
           @setCoordinates="setCoordinates($event, circle.id)"
+          @addPoint="addPoint(circle.id)"
+          @addHover="addHover(circle.id)"
         ></card>
       </transition-group>
     </div>
@@ -59,6 +88,10 @@ export default {
       circleHeight: 0,
       boxHeight: 0,
       radius: 0,
+      adding: false,
+      activePoit: [],
+      hoverPoint: [],
+      pattern: [],
       edges: [],
       vertices: {},
       verticesPoints: [],
@@ -97,6 +130,17 @@ export default {
     }
   },
   methods: {
+    addHover(id) {
+      if (this.adding) this.hoverPoint = id;
+    },
+    addPoint(id) {
+      this.adding = !this.adding;
+      if (this.adding) {
+        this.activePoit = id;
+      } else {
+        this.pattern.push([this.activePoit, id]);
+      }
+    },
     setCoordinates(points, id) {
       this.vertices[id] = points;
       this.$forceUpdate();

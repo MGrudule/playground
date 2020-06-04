@@ -4,6 +4,8 @@
     class="card hover:bg-teal-700 text-black lg:w-48 m-4 lg:m-2"
     :class="card.color"
     :style="cardStyle"
+    @click="$emit('addPoint')"
+    @mouseenter="$emit('addHover')"
   >{{ card.name }} {{message}}</div>
 </template>
 
@@ -74,6 +76,7 @@ export default {
           this.circleHeight +
           6
       };
+
       this.$emit("setCoordinates", pos);
     },
     getX(order, r, clockwise, offset) {
