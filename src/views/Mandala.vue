@@ -1,19 +1,19 @@
 <template>
   <div class="home container position-relative">
     <div class="page-wrapper">
-      <Mandala></Mandala>
+      <MandalaContainer></MandalaContainer>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Mandala from "@/components/mandala/Mandala.vue";
+import MandalaContainer from "@/components/mandala/MandalaContainer.vue";
 
 export default {
-  name: "About",
+  name: "Mandala",
   components: {
-    Mandala
+    MandalaContainer
   }
 };
 </script>

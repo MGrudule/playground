@@ -2,11 +2,10 @@
   <div>
     <button class="btn my-5 text-teal-700 w-100" @click="toggleGrid">toggle grid</button>
     <button class="btn my-5 text-teal-700 w-100" @click="toggleMeta">toggle meta</button>
-
     <div ref="boxouter" class="box-wrapper">
       <transition-group
         tag="div"
-        class="flex mt-4 align-top justify-center md:justify-between flex-wrap"
+        class="flex align-top justify-center md:justify-between flex-wrap z-10 relative"
         :style="{ height: boxHeight + 'px' }"
       >
         <card
