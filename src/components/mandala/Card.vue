@@ -41,7 +41,7 @@ export default {
           borderRadius: "100%",
           height: String(this.circleHeight) + "px",
           width: String(this.circleHeight) + "px",
-          borderWidth: "0.2rem"
+          borderWidth: "3px"
         };
       else {
         return {
@@ -64,23 +64,15 @@ export default {
     sendCoordinates() {
       let pos = {
         x:
-          this.getX(
-            this.order,
-            this.radius - this.circleHeight / Math.PI,
-            true,
-            0
-          ) +
+          this.getX(this.order, this.radius - this.circleHeight / 2, true, 0) +
           this.evenOffset +
-          this.circleHeight,
+          this.circleHeight +
+          6,
         y:
-          this.getY(
-            this.order,
-            this.radius - this.circleHeight / Math.PI,
-            true,
-            0
-          ) +
+          this.getY(this.order, this.radius - this.circleHeight / 2, true, 0) +
           this.evenOffset +
-          this.circleHeight
+          this.circleHeight +
+          6
       };
       this.$emit("setCoordinates", pos);
     },
