@@ -40,6 +40,7 @@ export default {
       circleHeight: 0,
       boxHeight: 0,
       radius: 0,
+      edges: [],
       circles: [
         { id: 1, name: "Worldview", keywords: "lorem", color: "bg-white" },
         { id: 2, name: "Wellbeing", keywords: "lorem", color: "bg-yellow-500" },
@@ -61,8 +62,34 @@ export default {
       ]
     };
   },
-
+  computed: {
+    edgeCount() {
+      let n = this.circles.length;
+      return (n / 2) * (n - 1);
+    },
+    nodeList() {
+      let nodes = [];
+      this.circles.forEach(element => {
+        nodes.push(element.id);
+      });
+      return nodes;
+    }
+  },
   methods: {
+    getEdges() {
+      let edgeList = [];
+      let n = this.nodeList.length;
+      if (n > 0) {
+        let nodeList = [...this.nodeList];
+        for (let i = 0; i < n; i++) {
+          nodeList.shift(); //remove
+          for (let j = 0; j < nodeList.length; j++) {
+            edgeList.push([this.nodeList[i], nodeList[j]]);
+          }
+        }
+      }
+      this.edges = edgeList;
+    },
     toggleGrid() {
       this.grid = !this.grid;
     },
@@ -82,6 +109,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.matchHeight();
+      this.getEdges(this.nodeList.length);
     });
   },
   created() {
