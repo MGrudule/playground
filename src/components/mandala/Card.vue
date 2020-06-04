@@ -63,13 +63,26 @@ export default {
   methods: {
     sendCoordinates() {
       let pos = {
-        x: this.$refs.card.getBoundingClientRect().top,
-        y: this.$refs.card.getBoundingClientRect().left
+        x:
+          this.getX(
+            this.order,
+            this.radius - this.circleHeight / Math.PI,
+            true,
+            0
+          ) +
+          this.evenOffset +
+          this.circleHeight,
+        y:
+          this.getY(
+            this.order,
+            this.radius - this.circleHeight / Math.PI,
+            true,
+            0
+          ) +
+          this.evenOffset +
+          this.circleHeight
       };
       this.$emit("setCoordinates", pos);
-    },
-    getPosX() {
-      return this.$refs.card.getBoundingClientRect().left;
     },
     getX(order, r, clockwise, offset) {
       if (this.even && this.meta) {

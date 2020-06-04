@@ -3,6 +3,18 @@
     <button class="btn my-5 text-teal-700 w-100" @click="toggleGrid">toggle grid</button>
     <button class="btn my-5 text-teal-700 w-100" @click="toggleMeta">toggle meta</button>
     <div ref="boxouter" class="box-wrapper">
+      <svg v-if="grid" class="absolute top-0 left-0" :height="boxHeight" :width="boxHeight">
+        <line
+          v-for="(edge, index) in edges"
+          :key="`edge${index}`"
+          :x1="vertices[edge[0]].x"
+          :y1="vertices[edge[0]].y"
+          :x2="vertices[edge[1]].x"
+          :y2="vertices[edge[1]].y"
+          style="stroke:rgba(0,0,0,0.1);stroke-width:1"
+        />
+      </svg>
+
       <transition-group
         tag="div"
         class="flex align-top justify-center md:justify-between flex-wrap z-10 relative"
@@ -43,6 +55,7 @@ export default {
       radius: 0,
       edges: [],
       vertices: {},
+      verticesPoints: [],
       circles: [
         { id: 1, name: "Worldview", keywords: "lorem", color: "bg-white" },
         { id: 2, name: "Wellbeing", keywords: "lorem", color: "bg-yellow-500" },
@@ -79,8 +92,8 @@ export default {
   },
   methods: {
     setCoordinates(points, id) {
-      console.log(points);
       this.vertices[id] = points;
+      this.$forceUpdate();
     },
     getEdges() {
       let edgeList = [];
