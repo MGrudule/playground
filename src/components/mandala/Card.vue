@@ -1,7 +1,7 @@
 <template>
   <div
     ref="card"
-    class="card hover:bg-teal-700 text-black lg:w-48 m-4 lg:m-2"
+    class="card hover:bg-teal-700 lg:w-48 m-4 lg:m-2 text-white border border-dashed border-yellow-500"
     :class="card.color"
     :style="cardStyle"
     @click="$emit('addPoint')"
@@ -116,12 +116,14 @@ export default {
 
 <style >
 .card {
-  @apply p-3 flex text-center  border border-dashed border-yellow-500 text-blue-100 h-64 flex justify-evenly;
+  @apply p-3 flex text-center   h-64 flex justify-evenly;
   flex-direction: column;
   border-width: 2.2rem;
   transition: all 0.2s;
   box-sizing: border-box;
   transform: translate3d(0);
+  max-height: 12rem;
+  cursor: pointer;
 }
 .card:hover {
   border-width: 1.4rem;

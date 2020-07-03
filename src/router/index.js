@@ -17,6 +17,12 @@ const routes = [{
     // which is lazy-loaded when the route is visited.
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/Mandala.vue")
+  },
+  {
+    path: "/Hexagons",
+    name: "Hexagons",
+    component: () =>
+      import( /* webpackChunkName: "about" */ "../views/Hexagons.vue")
   }
 ];
 
