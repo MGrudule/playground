@@ -65,8 +65,8 @@
           :meta="meta"
           :key="circle.id"
           @setCoordinates="setCoordinates($event, circle.id)"
-          @addPoint="addPoint(circle.id)"
-          @addHover="addHover(circle.id)"
+          @add-point="addPoint(circle.id)"
+          @add-hover="addHover(circle.id)"
         ></card>
       </transition-group>
     </div>
@@ -96,9 +96,24 @@ export default {
       vertices: {},
       verticesPoints: [],
       circles: [
-        { id: 1, name: "Worldview", keywords: "lorem", color: "bg-white" },
-        { id: 2, name: "Wellbeing", keywords: "lorem", color: "bg-yellow-500" },
-        { id: 3, name: "Food", keywords: "lorem", color: "bg-orange-800" },
+        {
+          id: 1,
+          name: "Worldview",
+          keywords: "lorem",
+          color: "bg-white text-green-900"
+        },
+        {
+          id: 2,
+          name: "Wellbeing",
+          keywords: "lorem",
+          color: "bg-yellow-500 text-green-900"
+        },
+        {
+          id: 3,
+          name: "Food",
+          keywords: "lorem",
+          color: "bg-black-900 border-white"
+        },
         { id: 4, name: "Trade", keywords: "lorem", color: "bg-orange-300" },
         { id: 5, name: "Energy", keywords: "lorem", color: "bg-orange-500" },
         { id: 6, name: "Climate", keywords: "lorem", color: "bg-blue-500" },

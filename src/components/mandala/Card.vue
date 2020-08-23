@@ -1,11 +1,11 @@
 <template>
   <div
     ref="card"
-    class="card hover:bg-teal-700 lg:w-48 m-4 lg:m-2 text-white border border-dashed border-black-900"
+    class="card hover:bg-teal-700 lg:w-48 m-4 lg:m-2 text-white font-bold border border-dashed border-black-900"
     :class="card.color"
     :style="cardStyle"
-    @click="$emit('addPoint')"
-    @mouseenter="$emit('addHover')"
+    @click="$emit('add-point')"
+    @mouseenter="$emit('add-hover')"
   >{{ card.name }} {{message}}</div>
 </template>
 
@@ -116,11 +116,11 @@ export default {
 
 <style >
 .card {
-  @apply p-3 flex text-center   h-64 flex justify-evenly;
+  @apply p-3 text-center h-64 flex justify-evenly;
   flex-direction: column;
   border-width: 2.2rem;
   transition: border-width 0.3s cubic-bezier(0.75, -1, 0, 1.75),
-    background 0.1s ease-in, left 0.2s, right 0.2s, top 0.2s, bottom 0.2s;
+    background-color 0.1s ease-in, left 0.2s, right 0.2s, top 0.2s, bottom 0.2s;
   box-sizing: border-box;
   transform: translate3d(0);
   max-height: 12rem;
