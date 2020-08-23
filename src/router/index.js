@@ -23,6 +23,12 @@ const routes = [{
     name: "Hexagons",
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/Hexagons.vue")
+  },
+  {
+    path: "/parallax",
+    name: "Parallax",
+    component: () =>
+      import( /* webpackChunkName: "about" */ "../views/Parallax.vue")
   }
 ];
 

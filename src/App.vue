@@ -5,6 +5,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/mandala">Mandala</router-link>
       <!-- <router-link to="/hexagons">Hexagones</router-link> -->
+      <router-link to="/parallax">Parallax</router-link>
     </div>
     <transition name="fade" mode="out-in">
       <router-view />
