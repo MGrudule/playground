@@ -1,7 +1,7 @@
 <template>
   <div
     ref="card"
-    class="card hover:bg-teal-700 lg:w-48 m-4 lg:m-2 text-white border border-dashed border-yellow-500"
+    class="card hover:bg-teal-700 lg:w-48 m-4 lg:m-2 text-white border border-dashed border-black-900"
     :class="card.color"
     :style="cardStyle"
     @click="$emit('addPoint')"
@@ -119,7 +119,8 @@ export default {
   @apply p-3 flex text-center   h-64 flex justify-evenly;
   flex-direction: column;
   border-width: 2.2rem;
-  transition: all 0.2s;
+  transition: border-width 0.3s cubic-bezier(0.75, -1, 0, 1.75),
+    background 0.1s ease-in, left 0.2s, right 0.2s, top 0.2s, bottom 0.2s;
   box-sizing: border-box;
   transform: translate3d(0);
   max-height: 12rem;
@@ -127,7 +128,7 @@ export default {
 }
 .card:hover {
   border-width: 1.4rem;
-  @apply border-pink-400 p-6;
+  @apply border-green-400 p-6 bg-black-900 text-white;
 }
 .card:hover .btn {
   @apply bg-pink-400 text-yellow-500;
