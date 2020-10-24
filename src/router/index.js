@@ -4,7 +4,8 @@ import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: "/",
     name: "Home",
     component: Home
@@ -16,7 +17,7 @@ const routes = [{
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/Mandala.vue")
+      import(/* webpackChunkName: "about" */ "../views/Mandala.vue")
   },
   // {
   //   path: "/Hexagons",
@@ -28,18 +29,18 @@ const routes = [{
     path: "/leaflet",
     name: "Leaflet",
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/Leaflet.vue")
+      import(/* webpackChunkName: "about" */ "../views/Leaflet.vue")
   },
   {
     path: "/parallax",
     name: "Parallax",
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/Parallax.vue")
+      import(/* webpackChunkName: "about" */ "../views/Parallax.vue")
   },
   {
-    path: '*',
-    redirect: '/'
-  }, // catch all use case
+    path: "*",
+    redirect: "/"
+  } // catch all use case
 ];
 
 const router = new VueRouter({

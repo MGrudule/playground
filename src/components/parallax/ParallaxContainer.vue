@@ -5,8 +5,14 @@
     </div>
 
     <div class="p-10">
-      <kinesis-container :perspective="4000" class="container flex justify-center p-5">
-        <div class="absolute z-20 left-0" style="top:50%; left:10%;transform:translate(0%,-50%)">
+      <kinesis-container
+        :perspective="4000"
+        class="container flex justify-center p-5"
+      >
+        <div
+          class="absolute z-20 left-0"
+          style="top:50%; left:10%;transform:translate(0%,-50%)"
+        >
           <kinesis-element
             type="depth"
             transformOrigin="center center"
@@ -14,7 +20,7 @@
             class="h-64 w-64 bg-black-900 rounded-full text-white flex justify-center items-center border-white border flex-col shadow-sm"
           >
             <span class="text-2xl">Check me out!</span>
-            <span>{{placeholder}}</span>
+            <span>{{ placeholder }}</span>
           </kinesis-element>
         </div>
         <div
@@ -29,9 +35,10 @@
               v-for="index in 30"
               :key="index"
               :strength="50"
-              v-on:mouseenter.native="placeholder=index"
+              v-on:mouseenter.native="placeholder = index"
               class="h-16 w-16 bg-black-900 rounded-full my-4 mx-2 flex justify-center items-center hover:bg-green-400 shadow-md"
-            >{{index}}</kinesis-element>
+              >{{ index }}</kinesis-element
+            >
           </div>
         </div>
       </kinesis-container>
@@ -55,5 +62,4 @@ export default {
   destroyed() {}
 };
 </script>
-<style >
-</style>
+<style></style>
