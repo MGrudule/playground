@@ -4,8 +4,7 @@ import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
     component: Home
@@ -17,7 +16,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Mandala.vue")
+      import( /* webpackChunkName: "mandala" */ "../views/Mandala.vue")
   },
   // {
   //   path: "/Hexagons",
@@ -29,13 +28,13 @@ const routes = [
     path: "/leaflet",
     name: "Leaflet",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Leaflet.vue")
+      import( /* webpackChunkName: "leaflet" */ "../views/Leaflet.vue")
   },
   {
     path: "/parallax",
     name: "Parallax",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Parallax.vue")
+      import( /* webpackChunkName: "paralax" */ "../views/Parallax.vue")
   },
   {
     path: "*",
@@ -45,7 +44,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.SUB_URL,
+  base: '/play/',
   hash: false,
   routes
 });
