@@ -29,12 +29,17 @@ const routes = [{
     name: "Parallax",
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/Parallax.vue")
-  }
+  },
+  {
+    path: '*',
+    redirect: '/'
+  }, // catch all use case
 ];
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: process.env.SUB_URL,
+  hash: false,
   routes
 });
 
