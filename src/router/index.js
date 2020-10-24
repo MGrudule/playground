@@ -18,11 +18,17 @@ const routes = [{
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/Mandala.vue")
   },
+  // {
+  //   path: "/Hexagons",
+  //   name: "Hexagons",
+  //   component: () =>
+  //     import( /* webpackChunkName: "about" */ "../views/Hexagons.vue")
+  // },
   {
-    path: "/Hexagons",
-    name: "Hexagons",
+    path: "/leaflet",
+    name: "Leaflet",
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/Hexagons.vue")
+      import( /* webpackChunkName: "about" */ "../views/Leaflet.vue")
   },
   {
     path: "/parallax",
