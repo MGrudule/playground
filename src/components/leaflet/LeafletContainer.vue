@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     isInteractive() {
-      return this.interactive ? "Turn off interaction" : "Turn on intercation";
+      return this.interactive ? "Turn off interaction" : "Turn on interaction";
     },
     isLayer() {
       return this.layer === "default" ? "B&W " : "Colour";
@@ -89,7 +89,7 @@ export default {
     },
     stamenLayer: function() {
       this.map.addLayer(
-        new L.StamenTileLayer("toner", {
+        new L.StamenTileLayer("toner-lite", {
           detectRetina: true
         })
       );

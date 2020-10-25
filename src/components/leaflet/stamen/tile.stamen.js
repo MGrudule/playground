@@ -1,14 +1,12 @@
-(function(exports) {
+(function (exports) {
   /*
    * tile.stamen.js v1.3.0
    */
 
   var SUBDOMAINS = "a. b. c. d.".split(" "),
-    MAKE_PROVIDER = function(layer, type, minZoom, maxZoom) {
+    MAKE_PROVIDER = function (layer, type, minZoom, maxZoom) {
       return {
-        url: ["http://{S}tile.stamen.com/", layer, "/{Z}/{X}/{Y}.", type].join(
-          ""
-        ),
+        url: ["https://stamen-tiles-{S}a.ssl.fastly.net/", layer, "/{Z}/{X}/{Y}.", type].join(""),
         type: type,
         subdomains: SUBDOMAINS.slice(),
         minZoom: minZoom,
@@ -27,14 +25,12 @@
       "terrain-classic": MAKE_PROVIDER("terrain-classic", "png", 0, 18),
       watercolor: MAKE_PROVIDER("watercolor", "jpg", 1, 18),
       "trees-cabs-crime": {
-        url:
-          "http://{S}.tiles.mapbox.com/v3/stamen.trees-cabs-crime/{Z}/{X}/{Y}.png",
+        url: "http://{S}.tiles.mapbox.com/v3/stamen.trees-cabs-crime/{Z}/{X}/{Y}.png",
         type: "png",
         subdomains: "a b c d".split(" "),
         minZoom: 11,
         maxZoom: 18,
-        extent: [
-          {
+        extent: [{
             lat: 37.853,
             lon: -122.577
           },
@@ -141,7 +137,7 @@
       if (provider.deprecated && console && console.warn) {
         console.warn(
           name +
-            " is a deprecated style; it will be redirected to its replacement. For performance improvements, please change your reference."
+          " is a deprecated style; it will be redirected to its replacement. For performance improvements, please change your reference."
         );
       }
 
@@ -160,7 +156,7 @@
   if (typeof MM === "object") {
     var ModestTemplate =
       typeof MM.Template === "function" ? MM.Template : MM.TemplatedMapProvider;
-    MM.StamenTileLayer = function(name) {
+    MM.StamenTileLayer = function (name) {
       var provider = getProvider(name);
       this._provider = provider;
       MM.Layer.call(
@@ -172,7 +168,7 @@
     };
 
     MM.StamenTileLayer.prototype = {
-      setCoordLimits: function(map) {
+      setCoordLimits: function (map) {
         var provider = this._provider;
         if (provider.extent) {
           map.coordLimits = [
@@ -197,9 +193,9 @@
    */
   if (typeof L === "object") {
     L.StamenTileLayer = L.TileLayer.extend({
-      initialize: function(name, options) {
+      initialize: function (name, options) {
         var provider = getProvider(name),
-          url = provider.url.replace(/({[A-Z]})/g, function(s) {
+          url = provider.url.replace(/({[A-Z]})/g, function (s) {
             return s.toLowerCase();
           }),
           opts = L.Util.extend({}, options, {
@@ -217,7 +213,7 @@
     /*
      * Factory function for consistency with Leaflet conventions
      */
-    L.stamenTileLayer = function(options, source) {
+    L.stamenTileLayer = function (options, source) {
       return new L.StamenTileLayer(options, source);
     };
   }
@@ -231,14 +227,14 @@
   if (typeof OpenLayers === "object") {
     // make a tile URL template OpenLayers-compatible
     function openlayerize(url) {
-      return url.replace(/({.})/g, function(v) {
+      return url.replace(/({.})/g, function (v) {
         return "$" + v.toLowerCase();
       });
     }
 
     // based on http://www.bostongis.com/PrinterFriendly.aspx?content_name=using_custom_osm_tiles
     OpenLayers.Layer.Stamen = OpenLayers.Class(OpenLayers.Layer.OSM, {
-      initialize: function(name, options) {
+      initialize: function (name, options) {
         var provider = getProvider(name),
           url = provider.url,
           subdomains = provider.subdomains,
@@ -250,8 +246,7 @@
         } else {
           hosts.push(openlayerize(url));
         }
-        options = OpenLayers.Util.extend(
-          {
+        options = OpenLayers.Util.extend({
             numZoomLevels: provider.maxZoom,
             buffer: 0,
             transitionEffect: "resize",
@@ -281,8 +276,8 @@
   if (typeof google === "object" && typeof google.maps === "object") {
     // Extending Google class based on a post by Bogart Salzberg of Portland Webworks,
     // http://www.portlandwebworks.com/blog/extending-googlemapsmap-object
-    google.maps.ImageMapType = (function(_constructor) {
-      var f = function() {
+    google.maps.ImageMapType = (function (_constructor) {
+      var f = function () {
         if (!arguments.length) {
           return;
         }
@@ -292,11 +287,11 @@
       return f;
     })(google.maps.ImageMapType);
 
-    google.maps.StamenMapType = function(name) {
+    google.maps.StamenMapType = function (name) {
       var provider = getProvider(name),
         subdomains = provider.subdomains;
       return google.maps.ImageMapType.call(this, {
-        getTileUrl: function(coord, zoom) {
+        getTileUrl: function (coord, zoom) {
           var numTiles = 1 << zoom,
             wx = coord.x % numTiles,
             x = wx < 0 ? wx + numTiles : wx,
