@@ -1,30 +1,36 @@
 <template>
   <div>
-    <button class="btn my-5 text-teal-700 w-100" @click="toggleGrid">
-      toggle grid
+    <button
+      class="btn my-5 text-teal-700 w-100 p-2 border-teal-700 border-2"
+      @click="togglemandalaView"
+    >
+      {{ viewButtonText }}
     </button>
-    <button class="btn my-5 text-teal-700 w-100" @click="toggleMeta">
+
+    <!-- <button class="btn my-5 text-teal-700 w-100" @click="toggleMeta">
       toggle meta
-    </button>
-    {{ adding }}
+    </button> -->
+
     <div ref="boxouter" class="box-wrapper">
-      <svg
-        v-if="adding"
-        class="absolute top-0 left-0"
-        :height="boxHeight"
-        :width="boxHeight"
-      >
-        <line
-          :x1="getX(activePoit)"
-          :y1="getY(activePoit)"
-          :x2="getX(hoverPoint)"
-          :y2="getY(hoverPoint)"
-          style="stroke: rgba(255, 0, 0, 0.5); stroke-width: 4"
-        />
-      </svg>
+      <div v-if="mandalaView">
+        <svg
+          v-if="adding"
+          class="absolute top-0 left-0"
+          :height="boxHeight"
+          :width="boxHeight"
+        >
+          <line
+            :x1="getX(activePoit)"
+            :y1="getY(activePoit)"
+            :x2="getX(hoverPoint)"
+            :y2="getY(hoverPoint)"
+            style="stroke: rgba(255, 0, 0, 0.5); stroke-width: 4"
+          />
+        </svg>
+      </div>
       <transition-group
         tag="svg"
-        v-if="grid"
+        v-if="mandalaView"
         class="absolute top-0 left-0"
         :height="boxHeight"
         :width="boxHeight"
@@ -41,7 +47,7 @@
       </transition-group>
       <transition-group
         tag="svg"
-        v-if="grid"
+        v-if="mandalaView"
         class="absolute top-0 left-0"
         :height="boxHeight"
         :width="boxHeight"
@@ -70,7 +76,7 @@
           :order="index"
           :radius="radius"
           :even="index % 2 == 1"
-          :grid="grid"
+          :mandalaView="mandalaView"
           :meta="meta"
           :key="node.id"
           @setCoordinates="setCoordinates($event, node.id)"
@@ -92,7 +98,7 @@ export default {
   components: { card },
   data() {
     return {
-      grid: false,
+      mandalaView: true,
       meta: false,
       contHeight: 0,
       circleHeight: 0,
@@ -109,6 +115,9 @@ export default {
     };
   },
   computed: {
+    viewButtonText() {
+      return this.mandalaView ? "Show list view" : "Show mandala view";
+    },
     edgeCount() {
       let n = this.nodes.length;
       return (n / 2) * (n - 1);
@@ -157,8 +166,8 @@ export default {
       }
       this.edges = edgeList;
     },
-    toggleGrid() {
-      this.grid = !this.grid;
+    togglemandalaView() {
+      this.mandalaView = !this.mandalaView;
     },
     toggleMeta() {
       this.meta = !this.meta;

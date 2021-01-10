@@ -17,7 +17,7 @@ export default {
   props: [
     "node",
     "order",
-    "grid",
+    "mandalaView",
     "nrOfNodes",
     "radius",
     "circleHeight",
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     cardStyle() {
-      if (this.grid)
+      if (this.mandalaView)
         return {
           position: "absolute",
           left:
