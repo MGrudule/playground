@@ -19,7 +19,7 @@
           :y1="getY(activePoit)"
           :x2="getX(hoverPoint)"
           :y2="getY(hoverPoint)"
-          style="stroke:rgba(255,0,0,0.5);stroke-width:4"
+          style="stroke: rgba(255, 0, 0, 0.5); stroke-width: 4"
         />
       </svg>
       <transition-group
@@ -36,7 +36,7 @@
           :y1="getY(edge[0])"
           :x2="getX(edge[1])"
           :y2="getY(edge[1])"
-          style="stroke:rgba(0,255,120,0.5);stroke-width:3"
+          style="stroke: rgba(0, 255, 120, 0.5); stroke-width: 3"
         />
       </transition-group>
       <transition-group
@@ -53,7 +53,7 @@
           :y1="getY(edge[0])"
           :x2="getX(edge[1])"
           :y2="getY(edge[1])"
-          style="stroke:rgba(0,0,0,0.5);stroke-width:1"
+          style="stroke: rgba(0, 0, 0, 0.5); stroke-width: 1"
         />
       </transition-group>
 
@@ -63,19 +63,19 @@
         :style="{ height: boxHeight + 'px' }"
       >
         <card
-          v-for="(circle, index) in circles"
-          :nrOfCircles="circles.length"
-          :card="circle"
+          v-for="(node, index) in nodes"
+          :nrOfNodes="nodes.length"
+          :node="node"
           :circleHeight="circleHeight"
           :order="index"
           :radius="radius"
           :even="index % 2 == 1"
           :grid="grid"
           :meta="meta"
-          :key="circle.id"
-          @setCoordinates="setCoordinates($event, circle.id)"
-          @add-point="addPoint(circle.id)"
-          @add-hover="addHover(circle.id)"
+          :key="node.id"
+          @setCoordinates="setCoordinates($event, node.id)"
+          @add-point="addPoint(node.id)"
+          @add-hover="addHover(node.id)"
         ></card>
       </transition-group>
     </div>
@@ -84,9 +84,10 @@
 
 <script>
 import card from "@/components/mandala/Card.vue";
+import mandalaData from "@/data/mandala.json";
 export default {
   metaInfo: {
-    title: "Mandala"
+    title: "Mandala",
   },
   components: { card },
   data() {
@@ -104,54 +105,21 @@ export default {
       edges: [],
       vertices: {},
       verticesPoints: [],
-      circles: [
-        {
-          id: 1,
-          name: "Worldview",
-          keywords: "lorem",
-          color: "bg-white text-green-900"
-        },
-        {
-          id: 2,
-          name: "Wellbeing",
-          keywords: "lorem",
-          color: "bg-yellow-500 text-green-900"
-        },
-        {
-          id: 3,
-          name: "Food",
-          keywords: "lorem",
-          color: "bg-black-900 border-white"
-        },
-        { id: 4, name: "Trade", keywords: "lorem", color: "bg-orange-300" },
-        { id: 5, name: "Energy", keywords: "lorem", color: "bg-orange-500" },
-        { id: 6, name: "Climate", keywords: "lorem", color: "bg-blue-500" },
-        { id: 7, name: "Biosphere", keywords: "lorem", color: "bg-green-500" },
-        { id: 8, name: "Water", keywords: "lorem", color: "bg-teal-500" },
-        { id: 9, name: "Habitat", keywords: "lorem", color: "bg-gray-500" },
-        { id: 10, name: "Wealth", keywords: "lorem", color: "bg-red-500" },
-        {
-          id: 11,
-          name: "Governance",
-          keywords: "lorem",
-          color: "bg-yellow-700"
-        },
-        { id: 12, name: "Community", keywords: "lorem", color: "bg-purple-500" }
-      ]
+      nodes: [],
     };
   },
   computed: {
     edgeCount() {
-      let n = this.circles.length;
+      let n = this.nodes.length;
       return (n / 2) * (n - 1);
     },
     nodeList() {
       let nodes = [];
-      this.circles.forEach(element => {
+      this.nodes.forEach((element) => {
         nodes.push(element.id);
       });
       return nodes;
-    }
+    },
   },
   methods: {
     addHover(id) {
@@ -203,9 +171,10 @@ export default {
     },
     handleResize() {
       this.matchHeight();
-    }
+    },
   },
   mounted() {
+    this.nodes = mandalaData;
     this.$nextTick(() => {
       this.matchHeight();
       this.getEdges(this.nodeList.length);
@@ -217,7 +186,7 @@ export default {
   },
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
-  }
+  },
 };
 </script>
 <style>

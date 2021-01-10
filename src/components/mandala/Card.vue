@@ -2,12 +2,12 @@
   <div
     ref="card"
     class="card hover:bg-teal-700 lg:w-48 m-4 lg:m-2 text-white font-bold border border-dashed border-black-900"
-    :class="card.color"
+    :class="node.color"
     :style="cardStyle"
     @click="$emit('add-point')"
     @mouseenter="$emit('add-hover')"
   >
-    {{ card.name }} {{ message }}
+    {{ node.name }} {{ message }}
   </div>
 </template>
 
@@ -15,18 +15,18 @@
 export default {
   name: "Card",
   props: [
-    "card",
+    "node",
     "order",
     "grid",
-    "nrOfCircles",
+    "nrOfNodes",
     "radius",
     "circleHeight",
     "even",
-    "meta"
+    "meta",
   ],
   data() {
     return {
-      message: ""
+      message: "",
     };
   },
   computed: {
@@ -45,11 +45,11 @@ export default {
           borderRadius: "100%",
           height: String(this.circleHeight) + "px",
           width: String(this.circleHeight) + "px",
-          borderWidth: "3px"
+          borderWidth: "3px",
         };
       else {
         return {
-          top: "50%"
+          top: "50%",
         };
       }
     },
@@ -57,12 +57,12 @@ export default {
       if (this.even && this.meta) return this.circleHeight * 1.2;
 
       return 0;
-    }
+    },
   },
   watch: {
     cardStyle() {
       this.sendCoordinates();
-    }
+    },
   },
   methods: {
     sendCoordinates() {
@@ -76,7 +76,7 @@ export default {
           this.getY(this.order, this.radius - this.circleHeight / 2, true, 0) +
           this.evenOffset +
           this.circleHeight +
-          6
+          6,
       };
 
       this.$emit("setCoordinates", pos);
@@ -91,10 +91,10 @@ export default {
         r *
           (clockwise
             ? Math.sin(
-                (360 / this.nrOfCircles / 180) * (order + offset) * Math.PI
+                (360 / this.nrOfNodes / 180) * (order + offset) * Math.PI
               )
             : -Math.sin(
-                (360 / this.nrOfCircles / 180) * (order + offset) * Math.PI
+                (360 / this.nrOfNodes / 180) * (order + offset) * Math.PI
               ))
       );
     },
@@ -105,14 +105,13 @@ export default {
       }
       return (
         r +
-        -r *
-          Math.cos((360 / this.nrOfCircles / 180) * (order + offset) * Math.PI)
+        -r * Math.cos((360 / this.nrOfNodes / 180) * (order + offset) * Math.PI)
       );
-    }
+    },
   },
   mounted() {
     this.sendCoordinates();
-  }
+  },
 };
 </script>
 
