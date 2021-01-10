@@ -2,7 +2,12 @@
   <div>
     <h1>Hexagones</h1>
     <div class="relative">
-      <canvas ref="can" width="800" height="500" style="border:1px solid #ccc"></canvas>
+      <canvas
+        ref="can"
+        width="800"
+        height="500"
+        style="border:1px solid #ccc"
+      ></canvas>
     </div>
   </div>
 </template>
@@ -161,7 +166,7 @@ export default {
   destroyed() {}
 };
 </script>
-<style >
+<style>
 .box-wrapper {
   position: relative;
   display: block;

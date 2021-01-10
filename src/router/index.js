@@ -16,29 +16,35 @@ const routes = [{
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/Mandala.vue")
+      import( /* webpackChunkName: "mandala" */ "../views/Mandala.vue")
   },
+  // {
+  //   path: "/Hexagons",
+  //   name: "Hexagons",
+  //   component: () =>
+  //     import( /* webpackChunkName: "about" */ "../views/Hexagons.vue")
+  // },
   {
-    path: "/Hexagons",
-    name: "Hexagons",
+    path: "/leaflet",
+    name: "Leaflet",
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/Hexagons.vue")
+      import( /* webpackChunkName: "leaflet" */ "../views/Leaflet.vue")
   },
   {
     path: "/parallax",
     name: "Parallax",
     component: () =>
-      import( /* webpackChunkName: "about" */ "../views/Parallax.vue")
+      import( /* webpackChunkName: "paralax" */ "../views/Parallax.vue")
   },
   {
-    path: '*',
-    redirect: '/'
-  }, // catch all use case
+    path: "*",
+    redirect: "/"
+  } // catch all use case
 ];
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.SUB_URL,
+  base: '/play/',
   hash: false,
   routes
 });

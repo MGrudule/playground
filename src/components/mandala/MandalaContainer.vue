@@ -1,10 +1,19 @@
 <template>
   <div>
-    <button class="btn my-5 text-teal-700 w-100" @click="toggleGrid">toggle grid</button>
-    <button class="btn my-5 text-teal-700 w-100" @click="toggleMeta">toggle meta</button>
-    {{adding}}
+    <button class="btn my-5 text-teal-700 w-100" @click="toggleGrid">
+      toggle grid
+    </button>
+    <button class="btn my-5 text-teal-700 w-100" @click="toggleMeta">
+      toggle meta
+    </button>
+    {{ adding }}
     <div ref="boxouter" class="box-wrapper">
-      <svg v-if="adding" class="absolute top-0 left-0" :height="boxHeight" :width="boxHeight">
+      <svg
+        v-if="adding"
+        class="absolute top-0 left-0"
+        :height="boxHeight"
+        :width="boxHeight"
+      >
         <line
           :x1="getX(activePoit)"
           :y1="getY(activePoit)"
@@ -60,7 +69,7 @@
           :circleHeight="circleHeight"
           :order="index"
           :radius="radius"
-          :even="index%2 == 1"
+          :even="index % 2 == 1"
           :grid="grid"
           :meta="meta"
           :key="circle.id"
@@ -211,7 +220,7 @@ export default {
   }
 };
 </script>
-<style >
+<style>
 .box-wrapper {
   position: relative;
   display: block;

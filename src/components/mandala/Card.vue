@@ -6,7 +6,9 @@
     :style="cardStyle"
     @click="$emit('add-point')"
     @mouseenter="$emit('add-hover')"
-  >{{ card.name }} {{message}}</div>
+  >
+    {{ card.name }} {{ message }}
+  </div>
 </template>
 
 <script>
@@ -114,7 +116,7 @@ export default {
 };
 </script>
 
-<style >
+<style>
 .card {
   @apply p-3 text-center h-64 flex justify-evenly;
   flex-direction: column;
