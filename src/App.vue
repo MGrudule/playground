@@ -1,13 +1,21 @@
 <template>
   <div id="app">
     <div class="block w-full h-1 bg-pink-500 fixed top-0 z-50"></div>
-    <div id="nav" class="nav container z-50 relative ">
-      <router-link to="/">Home</router-link>
+    <div
+      id="nav"
+      class="nav container z-50 relative"
+    >
+      <!-- <router-link to="/">Home</router-link> -->
       <router-link to="/mandala">Mandala</router-link>
       <!-- <router-link to="/hexagons">Hexagones</router-link> -->
       <router-link to="/leaflet">Leaflet</router-link>
+      <router-link to="/circle">Circles</router-link>
+
     </div>
-    <transition name="fade" mode="out-in">
+    <transition
+      name="fade"
+      mode="out-in"
+    >
       <router-view />
     </transition>
   </div>
